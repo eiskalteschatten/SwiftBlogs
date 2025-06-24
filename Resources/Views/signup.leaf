@@ -1,0 +1,6 @@
+
+#extend("_layout"):
+    #export("body"):
+        <p>Sign up</p>
+    #endexport
+#endextend
