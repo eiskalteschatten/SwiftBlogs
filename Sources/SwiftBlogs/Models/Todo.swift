@@ -1,5 +1,6 @@
 import Fluent
 import struct Foundation.UUID
+import struct Foundation.Date
 
 /// Property wrappers interact poorly with `Sendable` checking, causing a warning for the `@ID` property
 /// It is recommended you write your model with sendability checking on and then suppress the warning
@@ -12,6 +13,13 @@ final class Todo: Model, @unchecked Sendable {
 
     @Field(key: "title")
     var title: String
+    
+    @Timestamp(key: "created_at", on: .create)
+    var createdAt: Date?
+
+    // When this Planet was last updated.
+    @Timestamp(key: "updated_at", on: .update)
+    var updatedAt: Date?
 
     init() { }
 
@@ -23,7 +31,9 @@ final class Todo: Model, @unchecked Sendable {
     func toDTO() -> TodoDTO {
         .init(
             id: self.id,
-            title: self.$title.value
+            title: self.$title.value,
+            createdAt: self.createdAt,
+            updatedAt: self.updatedAt
         )
     }
 }
