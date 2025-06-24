@@ -16,7 +16,7 @@ struct UserService {
             name: createUser.name,
             email: createUser.email,
             password: Bcrypt.hash(createUser.password),
-            verificationCode: UUID().uuidString + "-" + UUID().uuidString
+            verificationCode: [UInt8].random(count: 32).base64
         )
         
         try await user.save(on: self.db)
