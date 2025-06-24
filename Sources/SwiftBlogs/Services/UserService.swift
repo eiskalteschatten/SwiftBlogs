@@ -12,6 +12,7 @@ struct UserService {
     
     func createUser(userDTO: UserDTO) async throws -> Void {
         let user = userDTO.toModel()
+        // TODO: hash the password before saving it!
         try await user.save(on: self.db)
     }
 }
