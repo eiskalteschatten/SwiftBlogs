@@ -8,10 +8,10 @@
 </head>
 
 <body>
-    <nav class="top-nav">
+    <nav class="top-nav container">
         <a href="/">Home</a>
-        <a href="/sign-up">Sign Up</a>
-        <a href="/login">Login</a>
+        <a href="/account/sign-up">Sign Up</a>
+        <a href="/account/login">Login</a>
     </nav>
     <main class="container">
         #import("body")
