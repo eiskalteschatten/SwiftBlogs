@@ -6,13 +6,19 @@
 //
 
 import Fluent
+import Vapor
 
 struct UserService {
     var db: any Database
     
-    func createUser(userDTO: UserDTO) async throws -> Void {
-        let user = userDTO.toModel()
-        // TODO: hash the password before saving it!
+    func createUser(createUser: User.Create) async throws -> Void {
+        let user = try User(
+            name: createUser.name,
+            email: createUser.email,
+            password: Bcrypt.hash(createUser.password),
+            verificationCode: UUID().uuidString + "-" + UUID().uuidString
+        )
+        
         try await user.save(on: self.db)
     }
 }

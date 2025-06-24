@@ -33,9 +33,15 @@ struct AccountController: RouteCollection {
 
     @Sendable
     func createAccount(req: Request) async throws -> Response {
-        let userDTO = try req.content.decode(UserDTO.self)
+        try User.Create.validate(content: req)
+        let createUser = try req.content.decode(User.Create.self)
+        
+        guard createUser.password == createUser.confirmPassword else {
+            throw Abort(.badRequest, reason: "Passwords did not match")
+        }
+        
         let userService = UserService(db: req.db)
-        try await userService.createUser(userDTO: userDTO)
+        try await userService.createUser(createUser: createUser)
         return req.redirect(to: "/")
     }
 }
