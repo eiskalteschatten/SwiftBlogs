@@ -22,8 +22,8 @@ final class User: Model, @unchecked Sendable {
     @ID(key: .id)
     var id: UUID?
     
-    @Field(key: "username")
-    var username: String
+    @Field(key: "name")
+    var name: String
 
     @Field(key: "email")
     var email: String
@@ -49,9 +49,9 @@ final class User: Model, @unchecked Sendable {
 
     init() { }
 
-    init(id: UUID? = nil, username: String, email: String, password: String, status: UserStatus = .unverified, role: UserRole = .user, verificationCode: String) {
+    init(id: UUID? = nil, name: String, email: String, password: String, status: UserStatus = .unverified, role: UserRole = .user, verificationCode: String) {
         self.id = id
-        self.username = username
+        self.name = name
         self.email = email
         self.password = password
         self.status = status
@@ -62,7 +62,7 @@ final class User: Model, @unchecked Sendable {
     func toDTO() -> UserDTO {
         .init(
             id: self.id,
-            username: self.$username.value,
+            name: self.$name.value,
             email: self.$email.value,
             password: self.$password.value,
             status: self.$status.value,

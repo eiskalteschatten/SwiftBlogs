@@ -3,7 +3,7 @@ import Vapor
 
 struct UserDTO: Content {
     var id: UUID?
-    var username: String?
+    var name: String?
     var email: String?
     var password: String?
     var status: UserStatus?
@@ -16,8 +16,8 @@ struct UserDTO: Content {
         let model = User()
         
         model.id = self.id
-        if let username = self.username {
-            model.username = username
+        if let name = self.name {
+            model.name = name
         }
         if let email = self.email {
             model.email = email
