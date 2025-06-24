@@ -19,6 +19,7 @@ public func configure(_ app: Application) async throws {
     
     app.sessions.use(.fluent)
     app.middleware.use(app.sessions.middleware)
+    app.middleware.use(User.sessionAuthenticator())
 
     app.migrations.add(SessionRecord.migration)
     app.migrations.add(CreateUser())
