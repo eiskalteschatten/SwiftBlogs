@@ -49,7 +49,6 @@ struct AccountController: RouteCollection {
 
     @Sendable
     func loginUser(req: Request) async throws -> Response {
-        try req.auth.require(User.self)
         return req.redirect(to: "/")
     }
 }
