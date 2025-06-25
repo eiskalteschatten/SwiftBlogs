@@ -32,10 +32,10 @@ final class User: Model, @unchecked Sendable {
     @Field(key: "password")
     var password: String
     
-    @Enum(key: "type")
+    @Enum(key: "status")
     var status: UserStatus
     
-    @Enum(key: "type")
+    @Enum(key: "role")
     var role: UserRole
     
     @Field(key: "verification_code")

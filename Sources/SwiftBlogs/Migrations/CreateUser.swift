@@ -9,11 +9,11 @@ struct CreateUser: AsyncMigration {
             .field("password", .string, .required)
             .field("status", .string, .required)
             .field("role", .string, .required)
-            .field("verificationCode", .string, .required)
+            .field("verification_code", .string, .required)
             .field("created_at", .datetime, .required)
             .field("updated_at", .datetime, .required)
             .unique(on: "email")
-            .unique(on: "verificationCode")
+            .unique(on: "verification_code")
             .create()
     }
 
