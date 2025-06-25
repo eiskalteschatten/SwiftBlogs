@@ -16,7 +16,7 @@
 #
 
 volumes:
-  db_data:
+  swift_blog_data:
 
 x-shared_environment: &shared_environment
   LOG_LEVEL: ${LOG_LEVEL:-debug}
@@ -29,7 +29,7 @@ services:
   db:
     image: postgres:16-alpine
     volumes:
-      - db_data:/var/lib/postgresql/data/pgdata
+      - swift_blog_data:/var/lib/postgresql/data/pgdata
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: vapor_username
