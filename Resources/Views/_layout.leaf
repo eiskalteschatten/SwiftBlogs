@@ -10,8 +10,15 @@
 <body>
     <nav class="top-nav container">
         <a href="/">Home</a>
-        <a href="/account/sign-up">Sign Up</a>
-        <a href="/account/login">Login</a>
+        #if(username):
+            <div class="user-info">
+                <span>Welcome, #(username)!</span>
+                <a href="/account/logout">Logout</a>
+            </div>
+        #else:
+            <a href="/account/sign-up">Sign Up</a>
+            <a href="/account/login">Login</a>
+        #endif
     </nav>
     <main class="container">
         #import("body")

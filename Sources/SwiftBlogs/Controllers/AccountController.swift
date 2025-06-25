@@ -26,12 +26,16 @@ struct AccountController: RouteCollection {
     
     @Sendable
     func signup(req: Request) async throws -> View {
-        try await req.view.render("signup", ["title": TitleService.getTitle(title: "Sign Up")])
+        let user = req.auth.get(User.self)
+        let username = user?.name ?? nil
+        return try await req.view.render("signup", ["title": TitleService.getTitle(title: "Sign Up"), "username": username])
     }
     
     @Sendable
     func login(req: Request) async throws -> View {
-        try await req.view.render("login", ["title": TitleService.getTitle(title: "Login")])
+        let user = req.auth.get(User.self)
+        let username = user?.name ?? nil
+        return try await req.view.render("login", ["title": TitleService.getTitle(title: "Login"), "username": username])
     }
 
     @Sendable
@@ -50,6 +54,8 @@ struct AccountController: RouteCollection {
 
     @Sendable
     func loginUser(req: Request) async throws -> Response {
+        let user: User = try req.auth.require(User.self)
+        print("Authenticated user: \(user.email)")
         return req.redirect(to: "/")
     }
 }
