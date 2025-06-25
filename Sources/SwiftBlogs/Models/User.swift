@@ -92,3 +92,12 @@ extension User.Create: Validatable {
 }
 
 extension User: ModelSessionAuthenticatable { }
+
+extension User: ModelCredentialsAuthenticatable {
+    static let usernameKey: KeyPath<User, FieldProperty<User, String>> = \User.$email
+    static let passwordHashKey: KeyPath<User, FieldProperty<User, String>> = \User.$password
+
+    func verify(password: String) throws -> Bool {
+        try Bcrypt.verify(password, created: self.password)
+    }
+}

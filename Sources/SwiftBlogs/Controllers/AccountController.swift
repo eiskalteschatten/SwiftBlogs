@@ -13,6 +13,8 @@ struct AccountController: RouteCollection {
         }
         account.group("login") { _account in
             _account.get(use: self.login)
+            let credentialsProtectedRoute = _account.grouped(User.credentialsAuthenticator())
+            credentialsProtectedRoute.post(use: self.loginUser)
         }
     }
 
@@ -42,6 +44,12 @@ struct AccountController: RouteCollection {
         
         let userService = UserService(db: req.db)
         try await userService.createUser(createUser: createUser)
+        return req.redirect(to: "/")
+    }
+
+    @Sendable
+    func loginUser(req: Request) async throws -> Response {
+        try req.auth.require(User.self)
         return req.redirect(to: "/")
     }
 }
