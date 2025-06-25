@@ -17,6 +17,10 @@ struct AccountController: RouteCollection {
             let credentialsProtectedRoute = _account.grouped(User.credentialsAuthenticator())
             credentialsProtectedRoute.post(use: self.loginUser)
         }
+
+        account.group("logout") { _account in
+            _account.get(use: self.logoutUser)
+        }
     }
 
     @Sendable
@@ -56,6 +60,13 @@ struct AccountController: RouteCollection {
     func loginUser(req: Request) async throws -> Response {
         let user: User = try req.auth.require(User.self)
         print("Authenticated user: \(user.email)")
+        return req.redirect(to: "/")
+    }
+
+    @Sendable
+    func logoutUser(req: Request) async throws -> Response {
+        try req.auth.require(User.self)
+        req.auth.logout(User.self)
         return req.redirect(to: "/")
     }
 }
