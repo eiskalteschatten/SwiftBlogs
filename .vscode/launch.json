@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:SwiftBlogs}",
+      "name": "Debug SwiftBlogs",
+      "program": "${workspaceFolder:SwiftBlogs}/.build/debug/SwiftBlogs",
+      "preLaunchTask": "swift: Build Debug SwiftBlogs"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:SwiftBlogs}",
+      "name": "Release SwiftBlogs",
+      "program": "${workspaceFolder:SwiftBlogs}/.build/release/SwiftBlogs",
+      "preLaunchTask": "swift: Build Release SwiftBlogs"
+    }
+  ]
+}
