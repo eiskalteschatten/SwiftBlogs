@@ -11,6 +11,7 @@ struct AccountController: RouteCollection {
             _account.get(use: self.signup)
             _account.post(use: self.createAccount)
         }
+
         account.group("login") { _account in
             _account.get(use: self.login)
             let credentialsProtectedRoute = _account.grouped(User.credentialsAuthenticator())
