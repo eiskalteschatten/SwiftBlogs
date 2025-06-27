@@ -44,7 +44,6 @@ final class User: Model, @unchecked Sendable {
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
 
-    // When this Planet was last updated.
     @Timestamp(key: "updated_at", on: .update)
     var updatedAt: Date?
 
