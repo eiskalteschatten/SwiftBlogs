@@ -9,6 +9,11 @@ To build the project using the Swift Package Manager, run the following command 
 swift build
 ```
 
+To build the project for production, run the following command:
+```bash
+swift build --configuration release
+```
+
 To run the project and start the server, use the following command:
 ```bash
 swift run
