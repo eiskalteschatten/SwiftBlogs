@@ -11,7 +11,7 @@ swift build
 
 To build the project for production, run the following command:
 ```bash
-swift build --configuration release
+swift build -c release
 ```
 
 To run the project and start the server, use the following command:
