@@ -5,7 +5,6 @@ struct UserDTO: Content {
     var id: UUID?
     var name: String?
     var email: String?
-    var password: String?
     var status: UserStatus?
     var role: UserRole?
     var verificationCode: String?
@@ -21,9 +20,6 @@ struct UserDTO: Content {
         }
         if let email = self.email {
             model.email = email
-        }
-        if let password = self.password {
-            model.password = password
         }
         if let status = self.status {
             model.status = status

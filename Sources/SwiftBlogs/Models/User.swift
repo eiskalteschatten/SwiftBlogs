@@ -64,7 +64,6 @@ final class User: Model, @unchecked Sendable {
             id: self.id,
             name: self.$name.value,
             email: self.$email.value,
-            password: self.$password.value,
             status: self.$status.value,
             role: self.$role.value,
             createdAt: self.createdAt,
