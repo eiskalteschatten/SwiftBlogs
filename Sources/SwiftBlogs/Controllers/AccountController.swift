@@ -32,14 +32,14 @@ struct AccountController: RouteCollection {
     func signup(req: Request) async throws -> View {
         let user = req.auth.get(User.self)
         let username = user?.name ?? nil
-        return try await req.view.render("signup", ["title": TitleService.getTitle(title: "Sign Up"), "username": username])
+        return try await req.view.render("signup", ["title": TitleService.getTitle("Sign Up"), "username": username])
     }
     
     @Sendable
     func login(req: Request) async throws -> View {
         let user = req.auth.get(User.self)
         let username = user?.name ?? nil
-        return try await req.view.render("login", ["title": TitleService.getTitle(title: "Login"), "username": username])
+        return try await req.view.render("login", ["title": TitleService.getTitle("Login"), "username": username])
     }
 
     @Sendable
