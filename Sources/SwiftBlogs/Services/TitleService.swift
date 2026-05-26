@@ -5,14 +5,14 @@
 //  Created by Alex Seifert on 24.06.25.
 //
 
-struct TitleService {
-    static let defaultTitle = "Swift Blogs"
+enum TitleService {
+    private static let siteTitle = "Swift Blogs"
+    private static let separator = " | "
     
-    static func getTitle() -> String {
-        return TitleService.defaultTitle
-    }
-    
-    static func getTitle(title: String?) -> String {
-        return (title != nil) ? title! + " | " + TitleService.defaultTitle : TitleService.defaultTitle
+    static func getTitle(_ pageTitle: String? = nil) -> String {
+        guard let pageTitle = pageTitle, !pageTitle.isEmpty else {
+            return siteTitle
+        }
+        return "\(pageTitle)\(separator)\(siteTitle)"
     }
 }
