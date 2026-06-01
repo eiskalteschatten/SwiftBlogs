@@ -21,19 +21,19 @@ volumes:
 x-shared_environment: &shared_environment
   LOG_LEVEL: ${LOG_LEVEL:-debug}
   DATABASE_HOST: db
-  DATABASE_NAME: vapor_database
-  DATABASE_USERNAME: vapor_username
-  DATABASE_PASSWORD: vapor_password
+  DATABASE_NAME: swiftblogs
+  DATABASE_USERNAME: swiftblogs
+  DATABASE_PASSWORD: swiftblogs
   
 services:
   db:
-    image: postgres:16-alpine
+    image: mariadb:10
     volumes:
-      - swift_blog_data:/var/lib/postgresql/data/pgdata
+      - swift_blogs_data:/var/lib/mysql
     environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_USER: vapor_username
-      POSTGRES_PASSWORD: vapor_password
-      POSTGRES_DB: vapor_database
+      - MYSQL_ROOT_PASSWORD=swiftblogs
+      - MYSQL_DATABASE=swiftblogs
+      - MYSQL_USER=swiftblogs
+      - MYSQL_PASSWORD=swiftblogs
     ports:
       - '5432:5432'
