@@ -36,4 +36,4 @@ services:
       - MYSQL_USER=swiftblogs
       - MYSQL_PASSWORD=swiftblogs
     ports:
-      - '5432:5432'
+      - '3306:3306'
