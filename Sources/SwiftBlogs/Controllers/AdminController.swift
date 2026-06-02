@@ -10,7 +10,10 @@ import Vapor
 
 struct AdminController: RouteCollection {
     func boot(routes: any RoutesBuilder) throws {
-        let admin = routes.grouped("admin")
+        let admin = routes
+            .grouped(User.sessionAuthenticator())
+            .grouped(SuperAdminMiddleware())
+            .grouped("admin")
 
         admin.get(use: self.index)
     }
