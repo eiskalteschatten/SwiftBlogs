@@ -1,0 +1,5 @@
+#extend("admin/_layout"):
+    #export("body"):
+        <p>Homepage</p>
+    #endexport
+#endextend
