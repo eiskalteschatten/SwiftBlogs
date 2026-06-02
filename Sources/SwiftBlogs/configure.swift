@@ -24,6 +24,8 @@ public func configure(_ app: Application) async throws {
     app.migrations.add(CreateUser())
 
     app.views.use(.leaf)
+    
+    app.asyncCommands.use(MakeSuperAdminCommand(), as: "make-super-admin")
 
     // register routes
     try routes(app)
