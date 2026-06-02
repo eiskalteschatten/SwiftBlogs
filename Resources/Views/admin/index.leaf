@@ -1,5 +1,7 @@
 #extend("admin/_layout"):
     #export("body"):
-        <p>Homepage</p>
+        <main class="container-fluid container-xxl">
+            <p>Admin Homepage</p>
+        </main>
     #endexport
 #endextend

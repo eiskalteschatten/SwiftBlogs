@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <title>#(title)</title>
   
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/bootstrap-grid.min.css?v=5.3.8">
+    <link rel="stylesheet" href="/css/bootstrap-utilities.min.css?v=5.3.8">
+    <link rel="stylesheet" href="/css/common.css?v=1">
+    <link rel="stylesheet" href="/css/admin/main.css?v=1">
 </head>
 
 <body>
@@ -20,8 +23,7 @@
             <a href="/account/login">Login</a>
         #endif
     </nav>
-    <main class="container">
-        #import("body")
-    </main>
+
+    #import("body")
 </body>
 </html>
