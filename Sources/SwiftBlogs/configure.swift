@@ -25,7 +25,7 @@ public func configure(_ app: Application) async throws {
 
     app.views.use(.leaf)
     
-    app.asyncCommands.use(MakeSuperAdminCommand(), as: "make-super-admin")
+    app.asyncCommands.use(CreateUserCommand(), as: "create-user")
 
     // register routes
     try routes(app)

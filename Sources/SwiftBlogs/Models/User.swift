@@ -38,9 +38,6 @@ final class User: Model, @unchecked Sendable {
     @Enum(key: "role")
     var role: UserRole
     
-    @Field(key: "verification_code")
-    var verificationCode: String
-    
     @Timestamp(key: "created_at", on: .create)
     var createdAt: Date?
 
@@ -49,14 +46,13 @@ final class User: Model, @unchecked Sendable {
 
     init() { }
 
-    init(id: UUID? = nil, name: String, email: String, password: String, status: UserStatus = .unverified, role: UserRole = .user, verificationCode: String) {
+    init(id: UUID? = nil, name: String, email: String, password: String, status: UserStatus = .unverified, role: UserRole = .user) {
         self.id = id
         self.name = name
         self.email = email
         self.password = password
         self.status = status
         self.role = role
-        self.verificationCode = verificationCode
     }
     
     func toDTO() -> UserDTO {
@@ -77,7 +73,7 @@ extension User {
         var name: String
         var email: String
         var password: String
-        var confirmPassword: String
+        var confirmPassword: String?
     }
 }
 

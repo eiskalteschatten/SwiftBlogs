@@ -7,7 +7,6 @@ struct UserDTO: Content {
     var email: String?
     var status: UserStatus?
     var role: UserRole?
-    var verificationCode: String?
     var createdAt: Date?
     var updatedAt: Date?
     
@@ -26,9 +25,6 @@ struct UserDTO: Content {
         }
         if let role = self.role {
             model.role = role
-        }
-        if let verificationCode = self.verificationCode {
-            model.verificationCode = verificationCode
         }
         if let createdAt = self.createdAt {
             model.createdAt = createdAt

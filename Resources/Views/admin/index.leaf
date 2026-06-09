@@ -1,7 +1,0 @@
-#extend("admin/_layout"):
-    #export("body"):
-        <main class="container-fluid container-xxl">
-            <p>Admin Homepage</p>
-        </main>
-    #endexport
-#endextend
