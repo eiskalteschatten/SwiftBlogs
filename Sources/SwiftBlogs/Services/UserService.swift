@@ -8,10 +8,14 @@
 import Fluent
 import Vapor
 
-struct UserService {
-    var db: any Database
-    
-    func createUser(createUser: User.Create) async throws -> Void {
+public struct UserService {
+    public var db: any Database
+
+    public init(db: any Database) {
+        self.db = db
+    }
+
+    public func createUser(createUser: User.Create) async throws -> Void {
         guard try await User.query(on: self.db).filter(\.$email == createUser.email).first() == nil else {
             throw Abort(.conflict, reason: "A user with that email already exists.")
         }

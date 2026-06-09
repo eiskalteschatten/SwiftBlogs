@@ -5,11 +5,11 @@
 //  Created by Alex Seifert on 24.06.25.
 //
 
-enum TitleService {
+public enum TitleService {
     private static let siteTitle = "Swift Blogs"
     private static let separator = " | "
     
-    static func getTitle(_ pageTitle: String? = nil) -> String {
+    public static func getTitle(_ pageTitle: String? = nil) -> String {
         guard let pageTitle = pageTitle, !pageTitle.isEmpty else {
             return siteTitle
         }

@@ -3,13 +3,13 @@ import Vapor
 import struct Foundation.UUID
 import struct Foundation.Date
 
-enum UserStatus: String, Codable {
+public enum UserStatus: String, Codable, Sendable {
     case active = "active",
         disabled = "disabled",
         unverified = "unverified"
 }
 
-enum UserRole: String, Codable {
+public enum UserRole: String, Codable, Sendable {
     case user = "user",
         superAdmin = "super_admin"
 }
@@ -17,36 +17,36 @@ enum UserRole: String, Codable {
 /// Property wrappers interact poorly with `Sendable` checking, causing a warning for the `@ID` property
 /// It is recommended you write your model with sendability checking on and then suppress the warning
 /// afterwards with `@unchecked Sendable`.
-final class User: Model, @unchecked Sendable {
-    static let schema = "users"
+public final class User: Model, @unchecked Sendable {
+    public static let schema = "users"
     
     @ID(key: .id)
-    var id: UUID?
-    
+    public var id: UUID?
+
     @Field(key: "name")
-    var name: String
+    public var name: String
 
     @Field(key: "email")
-    var email: String
-    
+    public var email: String
+
     @Field(key: "password")
-    var password: String
-    
+    public var password: String
+
     @Enum(key: "status")
-    var status: UserStatus
-    
+    public var status: UserStatus
+
     @Enum(key: "role")
-    var role: UserRole
-    
+    public var role: UserRole
+
     @Timestamp(key: "created_at", on: .create)
-    var createdAt: Date?
+    public var createdAt: Date?
 
     @Timestamp(key: "updated_at", on: .update)
-    var updatedAt: Date?
+    public var updatedAt: Date?
 
-    init() { }
+    public init() { }
 
-    init(id: UUID? = nil, name: String, email: String, password: String, status: UserStatus = .unverified, role: UserRole = .user) {
+    public init(id: UUID? = nil, name: String, email: String, password: String, status: UserStatus = .unverified, role: UserRole = .user) {
         self.id = id
         self.name = name
         self.email = email
@@ -55,7 +55,7 @@ final class User: Model, @unchecked Sendable {
         self.role = role
     }
     
-    func toDTO() -> UserDTO {
+    public func toDTO() -> UserDTO {
         .init(
             id: self.id,
             name: self.$name.value,
@@ -69,16 +69,23 @@ final class User: Model, @unchecked Sendable {
 }
 
 extension User {
-    struct Create: Content {
-        var name: String
-        var email: String
-        var password: String
-        var confirmPassword: String?
+    public struct Create: Content {
+        public var name: String
+        public var email: String
+        public var password: String
+        public var confirmPassword: String?
+
+        public init(name: String, email: String, password: String, confirmPassword: String? = nil) {
+            self.name = name
+            self.email = email
+            self.password = password
+            self.confirmPassword = confirmPassword
+        }
     }
 }
 
 extension User.Create: Validatable {
-    static func validations(_ validations: inout Validations) {
+    public static func validations(_ validations: inout Validations) {
         validations.add("name", as: String.self, is: !.empty)
         validations.add("email", as: String.self, is: .email)
         validations.add("password", as: String.self, is: .count(8...))
@@ -88,10 +95,10 @@ extension User.Create: Validatable {
 extension User: ModelSessionAuthenticatable { }
 
 extension User: ModelCredentialsAuthenticatable {
-    static let usernameKey: KeyPath<User, FieldProperty<User, String>> = \User.$email
-    static let passwordHashKey: KeyPath<User, FieldProperty<User, String>> = \User.$password
+    public static let usernameKey: KeyPath<User, FieldProperty<User, String>> = \User.$email
+    public static let passwordHashKey: KeyPath<User, FieldProperty<User, String>> = \User.$password
 
-    func verify(password: String) throws -> Bool {
+    public func verify(password: String) throws -> Bool {
         try Bcrypt.verify(password, created: self.password)
     }
 }

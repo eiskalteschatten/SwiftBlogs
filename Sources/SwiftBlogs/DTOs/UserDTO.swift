@@ -1,16 +1,26 @@
 import Fluent
 import Vapor
 
-struct UserDTO: Content {
-    var id: UUID?
-    var name: String?
-    var email: String?
-    var status: UserStatus?
-    var role: UserRole?
-    var createdAt: Date?
-    var updatedAt: Date?
-    
-    func toModel() -> User {
+public struct UserDTO: Content {
+    public var id: UUID?
+    public var name: String?
+    public var email: String?
+    public var status: UserStatus?
+    public var role: UserRole?
+    public var createdAt: Date?
+    public var updatedAt: Date?
+
+    public init(id: UUID? = nil, name: String? = nil, email: String? = nil, status: UserStatus? = nil, role: UserRole? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+        self.id = id
+        self.name = name
+        self.email = email
+        self.status = status
+        self.role = role
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+    }
+
+    public func toModel() -> User {
         let model = User()
         
         model.id = self.id

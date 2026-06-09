@@ -8,8 +8,10 @@
 import Fluent
 import Vapor
 
-struct AdminController: RouteCollection {
-    func boot(routes: any RoutesBuilder) throws {
+public struct AdminController: RouteCollection, Sendable {
+    public init() {}
+
+    public func boot(routes: any RoutesBuilder) throws {
         let admin = routes
             .grouped(User.sessionAuthenticator())
             .grouped("admin")
