@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>#(title)</title>
-  
-    <link rel="stylesheet" href="/css/bootstrap-grid.min.css?v=5.3.8">
-    <link rel="stylesheet" href="/css/bootstrap-utilities.min.css?v=5.3.8">
-    <link rel="stylesheet" href="/css/main.css?v=1">
+
+    <link rel="stylesheet" href="/swiftblogs/css/bootstrap-grid.min.css?v=5.3.8">
+    <link rel="stylesheet" href="/swiftblogs/css/bootstrap-utilities.min.css?v=5.3.8">
+    <link rel="stylesheet" href="/swiftblogs/css/main.css?v=1">
 </head>
 
 <body>

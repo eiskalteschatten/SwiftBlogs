@@ -8,14 +8,18 @@
 import Fluent
 import Vapor
 
-struct CreateUserCommand: AsyncCommand {
-    struct Signature: CommandSignature {}
+public struct CreateUserCommand: AsyncCommand {
+    public struct Signature: CommandSignature {
+        public init() {}
+    }
 
-    var help: String {
+    public init() {}
+
+    public var help: String {
         "Creates a user."
     }
 
-    func run(using context: CommandContext, signature: Signature) async throws {
+    public func run(using context: CommandContext, signature: Signature) async throws {
         let name = context.console.ask("Name:")
         let email = context.console.ask("Email:")
         let password = context.console.ask("Password: ", isSecure: true)

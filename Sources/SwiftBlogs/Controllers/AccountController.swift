@@ -1,8 +1,10 @@
 import Fluent
 import Vapor
 
-struct AccountController: RouteCollection {
-    func boot(routes: any RoutesBuilder) throws {
+public struct AccountController: RouteCollection, Sendable {
+    public init() {}
+
+    public func boot(routes: any RoutesBuilder) throws {
         let account = routes.grouped("account")
 
         account.get(use: self.index)
